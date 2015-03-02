@@ -1,0 +1,41 @@
+<form ng-submit="save()" class="calendar-card" ng-if="$parent.calendarIsVisible">
+
+  <div class='calendar-body clearfix'>
+    <div class="preset-row clearfix">
+      <a ng-click="setPreset('lifetime')" ng-class="{active:preset === 'lifetime'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        Lifetime</a>
+      <a ng-click="setPreset('ytd')" ng-class="{active:preset === 'ytd'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        This year</a>
+      <a ng-click="setPreset('quarter')" ng-class="{active:preset === 'quarter'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        This quarter</a>
+      <a ng-click="setPreset('month')" ng-class="{active:preset === 'month'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        This month</a>
+      <a ng-click="setPreset('28d')" ng-class="{active:preset === '28d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        Last 28 days</a>
+      <a ng-click="setPreset('14d')" ng-class="{active:preset === '14d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        Last 14 days</a>
+      <a ng-click="setPreset('7d')" ng-class="{active:preset === '7d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        Last 7 days</a>
+      <a ng-click="setPreset('today')" ng-class="{active:preset === 'today'}" class="preset col-xs-6 col-sm-6 col-md-3">
+        Today</a>
+    </div>
+
+    <div class="datepickers">
+      <div class="calendar">
+        <span id="start-date" ui-date="dateOptions" ng-change="changeDate()" ng-model="dateRange.start"></span>
+      </div>
+      <div class="range-to">
+        <p>to</p>
+      </div>
+      <div class="calendar">
+        <span id="stop-date" ui-date="dateOptions" ng-change="changeDate()" ng-model="dateRange.stop"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-footer col-sm-12 clearfix">
+    <a ng-click='reset()' ng-disabled="!calendarDirty" class='btn'>Reset</a>
+    <a ng-click='close()' class='btn'>Close</a>
+    <input type="submit" ng-disabled="!calendarDirty" class="btn btn-primary" value="Apply"/>
+  </div>
+</form>

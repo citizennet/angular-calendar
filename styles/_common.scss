@@ -1,0 +1,176 @@
+.calendar-card {
+  background: #ffffff;
+  position: absolute;
+  z-index: 10000;
+  max-width: 50%;
+  right: 0;
+  box-shadow: 0 5px 1em rgba(0,0,0,0.1);
+  line-height: 1.5em;
+  margin-top: 3px;
+  color: #5C5C5E;
+
+  .preset-row {
+    text-align: center;
+    margin: 20px;
+
+  }
+  .preset {
+    &:hover {
+      text-decoration: none;
+    }
+    &.active {
+      background-color: #20859F;
+      color: #ffffff;
+      border-radius: 3px;
+    }
+    color: #20859F;
+    font-weight: 800;
+    float: left;
+    font-size: 0.75em;
+  }
+
+  .calendar {
+    padding: 0 15px;
+    float: left;
+  }
+
+  .range-to {
+    margin-top: 12px;
+    float: left;
+    text-align: center;
+    p {
+      font-weight: 800;
+    }
+  }
+
+  .calendar-footer {
+    padding: 20px;
+    text-align: right;
+  }
+
+  /** Calendar Widget Styling **/
+  .ui-datepicker-inline {
+    width: inherit;
+  }
+  .ui-datepicker-header {
+    background: #fff;
+    border: none;
+  }
+  .ui-datepicker-title {
+    margin: 0;
+  }
+  .ui-datepicker-prev, .ui-datepicker-next {
+    display: none;
+  }
+  .ui-datepicker-month, .ui-datepicker-year {
+    background: #ebebeb;
+    height: 35px;
+    border: none;
+    box-shadow: 0 1px 0 #C3BEC9;
+    border-radius: 5px;
+    color: #5C5C5E;
+
+    &:hover {
+      background: #ebebeb;
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: inset 0 0 1em #C3BEC9;
+    }
+  }
+  select.ui-datepicker-month {
+    margin: 0 5px 0 0;
+    width: 60%;
+  }
+  select.ui-datepicker-year {
+    width: 35%;
+    margin: 0;
+  }
+  .ui-datepicker {
+    border: none;
+
+    thead {
+      border-bottom: solid 1px #E6E6E6;
+    }
+    th {
+      font-weight: 200;
+      padding: 10px 0 0 0;
+      color: #949494;
+    }
+    tbody {
+      &:before {
+        content: '';
+      }
+      tr {
+        border-top: 4px solid #ffffff;
+        td.ui-state-range {
+          background: #e2eef2;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+
+          &:last-of-type, &.last-in-range {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+          }
+
+          /** hack to select first-of-class, needed until CSS4 **/
+          & ~ .ui-state-range {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+      td {
+        &.ui-state-disabled span {
+          text-align: center;
+          background: none;
+          border: none;
+        }
+        a {
+          border: none;
+          background: none;
+          text-align: center;
+
+          &:hover {
+            background: #e2eef2;
+            border-radius: 3px;
+          }
+          &.ui-state-active {
+            background: #A8D2DD;
+            border-radius: 3px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media (min-width:992px) {
+  .calendar-card {
+    .datepickers {
+      .calendar {
+        width: 47%
+      }
+
+      .range-to {
+        width: 6%;
+      }
+    }
+  }
+}
+
+@media (max-width:991px) {
+  .calendar-card {
+    .datepickers {
+      .calendar {
+        width: 100%
+      }
+
+      .range-to {
+        width: 100%;
+      }
+    }
+  }
+}
