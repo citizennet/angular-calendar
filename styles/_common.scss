@@ -23,6 +23,11 @@
       color: #ffffff;
       border-radius: 3px;
     }
+    &.disabled {
+      color: #808080;
+      pointer-events: none;
+      opacity: 0.5;
+    }
     color: #20859F;
     font-weight: 800;
     float: left;

@@ -2,21 +2,37 @@
 
   <div class='calendar-body clearfix'>
     <div class="preset-row clearfix">
-      <a ng-click="setPreset('lifetime')" ng-class="{active:preset === 'lifetime'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('lifetime')"
+         ng-class="{active:preset === 'lifetime'}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         Lifetime</a>
-      <a ng-click="setPreset('ytd')" ng-class="{active:preset === 'ytd'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('ytd')"
+         ng-class="{active:preset === 'ytd', disabled:disabledPresets.indexOf('ytd') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         This year</a>
-      <a ng-click="setPreset('quarter')" ng-class="{active:preset === 'quarter'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('quarter')"
+         ng-class="{active:preset === 'quarter', disabled:disabledPresets.indexOf('quarter') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         This quarter</a>
-      <a ng-click="setPreset('month')" ng-class="{active:preset === 'month'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('month')"
+         ng-class="{active:preset === 'month', disabled:disabledPresets.indexOf('month') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         This month</a>
-      <a ng-click="setPreset('28d')" ng-class="{active:preset === '28d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('28d')"
+         ng-class="{active:preset === '28d', disabled:disabledPresets.indexOf('28d') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         Last 28 days</a>
-      <a ng-click="setPreset('14d')" ng-class="{active:preset === '14d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('14d')"
+         ng-class="{active:preset === '14d', disabled:disabledPresets.indexOf('14d') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         Last 14 days</a>
-      <a ng-click="setPreset('7d')" ng-class="{active:preset === '7d'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('7d')"
+         ng-class="{active:preset === '7d', disabled:disabledPresets.indexOf('7d') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         Last 7 days</a>
-      <a ng-click="setPreset('today')" ng-class="{active:preset === 'today'}" class="preset col-xs-6 col-sm-6 col-md-3">
+      <a ng-click="setPreset('today')"
+         ng-class="{active:preset === 'today', disabled:disabledPresets.indexOf('today') !== -1}"
+         class="preset col-xs-6 col-sm-6 col-md-3">
         Today</a>
     </div>
 

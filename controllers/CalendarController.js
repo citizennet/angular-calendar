@@ -12,10 +12,12 @@ angular.module('cn.calendar')
           start_date: moment(dates.start_date).startOf('day').unix() * 1000,
           stop_date: moment(dates.stop_date).endOf('day').unix() * 1000
           };
+        $scope.disabledPresets = CalendarDateBuilder.getDisabledPresets(lifetimeDates);
       });
 
       $scope.calendarDirty = false;
       $scope.dateRange = {};
+      $scope.disabledPresets = [];
 
       $scope.dateOptions = {
         changeMonth: true,

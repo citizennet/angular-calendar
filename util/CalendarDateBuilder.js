@@ -95,5 +95,19 @@ var CalendarDateBuilder = {
 
   applyToDom: function() {
     $("#calendar-controls a span").html(this.toString());
+  },
+
+  getDisabledPresets: function(lifetimeDates) {
+    var presets = ['ytd', 'quarter', 'month', '28d', '14d', '7d', 'today'];
+    var disabledPresets = [];
+
+    presets.forEach(function(preset) {
+      var dates = this.fromPreset(preset, lifetimeDates);
+      if (dates.start > lifetimeDates.stop_date || dates.stop < lifetimeDates.start_date) {
+        disabledPresets.push(preset);
+      }
+    });
+
+    return disabledPresets;
   }
 }
