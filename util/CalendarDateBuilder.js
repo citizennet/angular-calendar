@@ -100,9 +100,10 @@ var CalendarDateBuilder = {
   getDisabledPresets: function(lifetimeDates) {
     var presets = ['ytd', 'quarter', 'month', '28d', '14d', '7d', 'today'];
     var disabledPresets = [];
+    var self = this;
 
     presets.forEach(function(preset) {
-      var dates = this.fromPreset(preset, lifetimeDates);
+      var dates = self.fromPreset(preset, lifetimeDates);
       if (dates.start > lifetimeDates.stop_date || dates.stop < lifetimeDates.start_date) {
         disabledPresets.push(preset);
       }
