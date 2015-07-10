@@ -11,7 +11,7 @@ angular.module('cn.calendar')
         lifetimeDates = {
           start_date: moment(dates.start_date).startOf('day').unix() * 1000,
           stop_date: moment(dates.stop_date).endOf('day').unix() * 1000
-          };
+        };
         $scope.disabledPresets = CalendarDateBuilder.getDisabledPresets(lifetimeDates);
       });
 
@@ -23,21 +23,22 @@ angular.module('cn.calendar')
         changeMonth: true,
         changeYear: true,
         dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        monthNamesShort: [ "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December" ],
+        monthNamesShort: ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"],
         beforeShowDay: function(date) {
           var unixDate = moment(date).unix() * 1000;
-          if (unixDate > lifetimeDates.stop_date || unixDate < lifetimeDates.start_date) {
-            return [ false, '', '' ];
+          if(unixDate > lifetimeDates.stop_date || unixDate < lifetimeDates.start_date) {
+            return [false, '', ''];
           }
-          else if (moment(date).unix() === moment($scope.dateRange.stop).startOf('day').unix() ||
+          else if(moment(date).unix() === moment($scope.dateRange.stop).startOf('day').unix() ||
               isLastDay(date)) {
-            return [ true, 'ui-state-range last-in-range', '' ];
+            return [true, 'ui-state-range last-in-range', ''];
           }
-          else if (date >= $scope.dateRange.start && date <= $scope.dateRange.stop)
-            return [ true , 'ui-state-range', '' ];
-          else
-            return [ true, '', '' ];
+          else if(date >= $scope.dateRange.start && date <= $scope.dateRange.stop) {
+            return [true, 'ui-state-range', ''];
+          } else {
+            return [true, '', ''];
+          }
         }
       };
 
@@ -50,14 +51,14 @@ angular.module('cn.calendar')
 
       $scope.setPreset = function(preset) {
         $scope.preset = preset;
-        setDateRange({ preset: preset });
+        setDateRange({preset: preset});
         $scope.calendarDirty = true;
-        if ($scope.dateRange.start > lifetimeDates.stop_date || $scope.dateRange.stop < lifetimeDates.start_date) {
+        if($scope.dateRange.start > lifetimeDates.stop_date || $scope.dateRange.stop < lifetimeDates.start_date) {
           $scope.calendarDirty = false;
         }
       };
 
-      $scope.save = function() {
+      $scope.save = function(applyNewDataDataSources) {
         var start_date = +$scope.dateRange.start,
             stop_date = moment(+$scope.dateRange.stop).endOf('day').unix() * 1000,
             preset = $scope.preset,
@@ -74,7 +75,7 @@ angular.module('cn.calendar')
           return;
         }
 
-        if (preset) {
+        if(preset) {
           dates.preset = preset;
         }
         else {
@@ -91,7 +92,9 @@ angular.module('cn.calendar')
 
         CalendarDateBuilder.applyToDom();
 
-        canvasContainerController.applyNewDataSources();
+        if(applyNewDataDataSources !== false) {
+          canvasContainerController.applyNewDataSources();
+        }
       };
 
       $scope.close = function() {
@@ -107,13 +110,13 @@ angular.module('cn.calendar')
       };
 
       $scope.$on('calendarOpen', function() {
-          var dates = window.canvasContainerController.dates();
-          if (!dates.preset && !dates.start && !dates.stop) {
-            dates.preset = 'lifetime';
-            window.canvasContainerController.dates({ preset: 'lifetime' });
-          }
-          $scope.preset = dates.preset;
-          setDateRange(dates);
+        var dates = window.canvasContainerController.dates();
+        if(!dates.preset && !dates.start && !dates.stop) {
+          dates.preset = 'lifetime';
+          window.canvasContainerController.dates({preset: 'lifetime'});
+        }
+        $scope.preset = dates.preset;
+        setDateRange(dates);
       });
 
       $scope.$on('calendarClose', function() {
@@ -122,7 +125,7 @@ angular.module('cn.calendar')
 
       $scope.$on('newReport', function() {
         $scope.setPreset('lifetime');
-        $scope.save();
+        $scope.save(false);
       });
 
       /**
@@ -130,8 +133,9 @@ angular.module('cn.calendar')
        *
        */
       function setDateRange(dates) {
-        if(dates.preset)
+        if(dates.preset) {
           dates = CalendarDateBuilder.fromPreset(dates.preset, lifetimeDates);
+        }
 
         $scope.dateRange = {
           start: dates.start ? new Date(dates.start) : null,
